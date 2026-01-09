@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+      <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>YURUWELLゆるウェル</title>
+         <!--↓CSSリンク-->
+         <link rel="stylesheet" href="style.css">
+         <!--↓フォントNotoSansJP-->
+	     <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+         <!--↓フォントZen Kurenaido-->
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Noto+Sans+JP:wght@100..900&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+         <!--↓フォントM PLUS 1p-->
+         <link rel="preconnect" href="https://fonts.googleapis.com">
+         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+         <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=M+PLUS+1p&family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        </head>
+
+      <body>
+         <!--トップ〜コンセプト背景用-->
+           <!--トップ-->
+           
+           <section id="top" >
+                <header>
+                 <!--ヘッダーナビ-->
+                 <div class="header_img">
+                    <img src="img/conpany_logo.png" alt="北海道歯科産業株式会社ロゴ">
+                  </div>
+
+                  <!-- スマホ用：ハンバーガーボタン -->
+<button class="hamburger" type="button" aria-label="メニューを開く" aria-controls="headernav" aria-expanded="false">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+                  <!-- デスクトップ用ナビ -->
+                  <div class="headerlist">
+                    <nav id="headernav" class="sp-nav">
+                      <ul>
+                        <li>
+                          <a href="#top">
+                            <span class="nav-en">Top</span>
+                            <span class="nav-jp">トップ</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#concept">
+                            <span class="nav-en">Concept</span>
+                            <span class="nav-jp">ゆるウェル</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#goods">
+                            <span class="nav-en">Goods</span>
+                            <span class="nav-jp">商品紹介</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#sharewell">
+                            <span class="nav-en">Sharewell</span>
+                            <span class="nav-jp">みんなで健康に</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </header>
+
+             <!--トップタイトル(ロゴ画像)-->
+             <div class="toptitle">
+              <img class="top-main" src="img/top_main.jpg" alt="YURUWELLゆるウェル">
+            
+              <!-- ロゴ画像をメインビジュアルの上に重ねる -->
+              <h1 class="top-logo">
+                <img src="img/yuruwell_logo.png" alt="YURUWELLゆるウェル">
+              </h1>
+            
+              <!-- スクロールインジケータもここに入れる -->
+              <div class="scroll-indicator">
+                <span class="scroll-text">scroll</span>
+                <span class="scroll-line"></span>
+                <span class="scroll-arrow"></span>
+              </div>
+            </div>
+
+                 <!--  トップテキスト  -->
+                  <p class="toptext">今の生活にちょっとプラスするだけで<br>自分の心とカラダに優しくなれる健康グッズのご紹介</p>
+
+              
+                 <!--固定ボタン(お申し込みはこちら→)-->
+                 <div class="top_button">
+                   <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTr4vmDDoIFmglBbTO5a4C8mPe7NZmAfYSfqjsu2Wp4EeI-Q/viewform" class="contact-button" target="_blank" rel="noopener noreferrer">
+                     商品のご注文はこちら
+                     <span class="arrow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="11" stroke="white"/>
+                          <polyline points="10 8 14 12 10 16"/>
+                        </svg>
+                     </span>
+                   </a>
+                 </div>
+           </section>
+
+           <!--  コンセプト  -->
+           <section id="concept">
+
+            <p class="contentback_text js-fadein fade-vertical delay-2">SUPPORT</p>
+          
+            <div class="concept_container"> 
+              
+              <div class="concept_image js-fadein fade-left">
+                <img src="img/concept_main.jpg" alt="親子の写真">
+              </div>
+          
+              <div class="conceptbox_03 js-fadein fade-up delay-1">
+                <div class="concept_title">
+                  <h2>ゆるウェルとは？</h2>
+                </div>
+              
+                <p class="concepttext">
+                  歯科医院で働くみなさまの<br>“自分と家族の美と健康”を<br>サポートします
+                </p>
+          
+                <p class="concepttext02">日々、患者さんの健康を支える立場だからこそ、<br>
+                  ご自身やご家族のことは、つい後回しになりがち。<br>
+                  そんな忙しい毎日のなかでも、無理せず、ゆるやかに<br>
+                  整えられる時間を持ってほしい<br>
+                  その想いを込めて、季節ごとに美と健康に<br>
+                  まつわるおすすめアイテムをお届けします。
+                </p> 
+              </div>
+          
+            </div>
+          
+          </section>
+          
+        <!--  グッズ紹介  -->
+<section id="goods">
+  <div class="goods_container">
+
+    <div class="goodsbox_01">
+      <div class="goodstitle">
+        <h3>ちょっとしたものをプラスして、毎日を健康に。</h3>
+      </div>
+      <p class="goodsbox_01_text">
+        忙しい毎日にゆるっとはじめられるウェルネスグッズを紹介
+      </p>
+    </div>
+
+    
+    <div class="goodsbox_02">
+      <div class="goods-view">
+        <!-- 3枚並べるゾーン -->
+        <div class="goods-track">
+          <div class="goods-item">
+            <img id="goods-left" src="img/goods_01.png" alt="化粧水1">
+          </div>
+    
+          <div class="goods-item">
+            <img id="goods-center" src="img/goods_02.png" alt="化粧水2">
+          </div>
+    
+          <div class="goods-item">
+            <img id="goods-right" src="img/goods_03.png" alt="化粧水3">
+          </div>
+        </div>
+    
+        <!-- 画像の「間」に重ねる矢印 -->
+        <button class="mid-arrow mid-prev" type="button" aria-label="前へ"></button>
+        <button class="mid-arrow mid-next" type="button" aria-label="次へ"></button>
+      </div>
+    </div>
+    
+    
+
+
+  </div>
+</section>
+
+<!--  シェアウェルグッズ紹介  -->
+<section id="sharewell" class="js-fadein-wrap">
+
+  <h3 class="sp-only-title js-fadein fade-up">シェアするウェルネス<br><span>SHAREWELL</span></h3>
+
+  <div class="sharewell_container">
+    <div class="sharewellbox_01 js-fadein fade-up delay-1">
+      <h4>あたらしい健康のカタチ。</h4>
+    </div>
+
+    <p class="sharewellbox_01_text js-fadein fade-up delay-2">
+      大切な人のために、家族や友だち、<br>同僚と一緒にめざせる健康
+    </p>
+
+    <div class="sharewellbox_02 js-fadein fade-up delay-3">
+      <picture class="sharewell_picture">
+        <source srcset="img/sharewell_goods_sumaho.png" media="(max-width: 428px)">
+        <img src="img/sharewell_goods.png" alt="JBPプラセンタEQドリンク" class="sharewell_img">
+      </picture>
+
+      <div class="sharewellbox_02_point js-fadein fade-up delay-3">
+        <div class="sharewellbox_02_point_text">
+          <p class="point_text">2026WINTERおすすめ</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+          <footer id="footer">
+
+            <div class="footer_container01">
+               <img src="img/conpany_logo.png" alt="北海道歯科産業ロゴ">
+               <ul class="footer_nav">
+                   <li><a href="#top">TOP</a></li>
+                   <li><a href="#concept">Concept</a></li>
+                   <li><a href="#goods">Goods</a></li>
+                   <li><a href="#sharewell">Sharewell</a></li>
+               </ul>
+           </div>
+
+            <div class="footer_logo"><img src="img/yuruwell_logo.png" alt=""></div>
+
+       </footer>
+
+
+       <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          /* =========================
+           * 1) 固定ボタン：2秒後に表示
+           * ========================= */
+          const button = document.querySelector(".top_button");
+          if (button) {
+            setTimeout(() => button.classList.add("active"), 2000);
+          }
+
+          
+        
+          /* =========================
+           * 2) フッター表示中は固定ボタンを隠す
+           * ========================= */
+          const footer = document.querySelector("#footer");
+          if (footer && button) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) button.classList.add("hidden");
+                  else button.classList.remove("hidden");
+                });
+              },
+              { threshold: 0.1 }
+            );
+            observer.observe(footer);
+          }
+        
+          /* =========================
+           * 3) Goods：3枚表示（左・中央・右）を矢印で切替
+           * ========================= */
+           const goodsImages = [
+  { src: "img/goods_01.png", alt: "クレンジング" },
+  { src: "img/goods_02.png", alt: "美容液" },
+  { src: "img/goods_03.png", alt: "化粧水" },
+  { src: "img/goods_04.png", alt: "クリーム" },
+  { src: "img/goods_05.png", alt: "リップグロス" },
+  { src: "img/goods_06.png", alt: "バイオガイア" },
+];
+
+const isSP = window.matchMedia("(max-width: 428px)").matches;
+
+const track  = document.querySelector(".goods-track");
+const prevBtn = document.querySelector(".mid-prev");
+const nextBtn = document.querySelector(".mid-next");
+
+const leftImg   = document.getElementById("goods-left");
+const centerImg = document.getElementById("goods-center");
+const rightImg  = document.getElementById("goods-right");
+
+if (track) {
+  if (isSP) {
+    // SP：6枚全部並べる（横スクロール）
+    track.innerHTML = goodsImages
+      .map(item => `
+        <div class="goods-item">
+          <img src="${item.src}" alt="${item.alt}">
+        </div>
+      `)
+      .join("");
+
+    // 矢印は不要
+    if (prevBtn) prevBtn.style.display = "none";
+    if (nextBtn) nextBtn.style.display = "none";
+  } else {
+    // PC：今まで通り3枚を差し替え
+    if (leftImg && centerImg && rightImg && prevBtn && nextBtn) {
+      let centerIndex = 1;
+
+      const render = () => {
+        const len = goodsImages.length;
+        const leftIndex  = (centerIndex - 1 + len) % len;
+        const rightIndex = (centerIndex + 1) % len;
+
+        leftImg.src = goodsImages[leftIndex].src;
+        leftImg.alt = goodsImages[leftIndex].alt;
+
+        centerImg.src = goodsImages[centerIndex].src;
+        centerImg.alt = goodsImages[centerIndex].alt;
+
+        rightImg.src = goodsImages[rightIndex].src;
+        rightImg.alt = goodsImages[rightIndex].alt;
+      };
+
+      prevBtn.addEventListener("click", () => {
+        centerIndex = (centerIndex - 1 + goodsImages.length) % goodsImages.length;
+        render();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        centerIndex = (centerIndex + 1) % goodsImages.length;
+        render();
+      });
+
+      render();
+    }
+  }
+  
+}
+        
+          /* =========================
+           * 4) ふわっと表示（.js-fadein）
+           * ========================= */
+          const fadeTargets = document.querySelectorAll(".js-fadein");
+          if (fadeTargets.length) {
+            const fadeObserver = new IntersectionObserver((entries, obs) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  obs.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.2 });
+        
+            fadeTargets.forEach(el => fadeObserver.observe(el));
+          }
+        
+          /* =========================
+           * 5) topロゴ/トップ画像のfade-in（どちらも同じクラス付与で統一）
+           * ========================= */
+          const logo = document.querySelector(".top-logo");
+          const topTitle = document.querySelector(".toptitle");
+        
+          const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) entry.target.classList.add("fade-in");
+            });
+          }, { threshold: 0.2 });
+        
+          if (logo) fadeInObserver.observe(logo);
+          if (topTitle) fadeInObserver.observe(topTitle);
+        });
+
+        /* =========================
+ * 6) SP：ハンバーガーメニュー
+ * ========================= */
+const hamburger = document.querySelector(".hamburger");
+const spNav = document.querySelector("#headernav");
+
+if (hamburger && spNav) {
+  const closeMenu = () => {
+    document.body.classList.remove("menu-open");
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-label", "メニューを開く");
+  };
+
+  const openMenu = () => {
+    document.body.classList.add("menu-open");
+    hamburger.setAttribute("aria-expanded", "true");
+    hamburger.setAttribute("aria-label", "メニューを閉じる");
+  };
+
+  hamburger.addEventListener("click", () => {
+    const isOpen = document.body.classList.contains("menu-open");
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  /* メニュー内リンクを押したら閉じる */
+  spNav.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", closeMenu);
+  });
+
+  /* 外側クリックで閉じる */
+  document.addEventListener("click", (e) => {
+    if (!document.body.classList.contains("menu-open")) return;
+    if (spNav.contains(e.target) || hamburger.contains(e.target)) return;
+    closeMenu();
+  });
+
+  /* ESCで閉じる */
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+}
+
+  const targets = document.querySelectorAll('.js-fadein');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  targets.forEach(t => io.observe(t));
+
+        </script>
+
+</body>
+</html>

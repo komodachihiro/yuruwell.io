@@ -1,0 +1,1353 @@
+/* ========================
+   ベース設定
+======================== */
+
+html {
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-family: "Noto Sans JP", "M PLUS 1p", sans-serif;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+  color: #333;
+  background: linear-gradient(
+    100deg,
+    #fbf4d7 0%,
+    #f7e5af 35%,
+    #edc448 100%
+  );
+  background-attachment: fixed; /* 必須：スクロールしても境目が出ない */
+}
+
+/* 画像は親幅にフィット */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 共通リンク */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section {
+  box-sizing: border-box;
+}
+
+/* ページ全体の中央カード（PC時） */
+#top,
+#concept,
+#sharewell {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ========================
+   ヘッダー
+======================== */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+  padding-bottom: 30px;
+}
+
+.header_img img {
+  padding-left: 40px;
+  height: 40px;
+}
+
+
+/* ナビ（横並び） */
+.headerlist ul {
+  list-style: none;
+  display: flex;
+  gap: 70px;         /* 間隔はお好みで調整 */
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+/* aタグを「1セルのグリッド」にして重ねる */
+.headerlist a {
+  position: relative;
+  display: inline-grid;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+/* 英語・日本語を同じグリッドセルに重ねる */
+.nav-en,
+.nav-jp {
+  grid-area: 1 / 1;        /* 同じセルに配置 */
+  white-space: nowrap;
+}
+
+/* 初期状態：英語だけ表示 */
+.nav-en {
+  opacity: 1;
+  transition: opacity 0.15s ease;
+}
+.nav-jp {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+/* ホバー時：英語→消える、日本語→出る */
+.headerlist a:hover .nav-en {
+  opacity: 0;
+}
+.headerlist a:hover .nav-jp {
+  opacity: 1;
+}
+
+/* 下線アニメーション（aの幅=長い方のテキスト） */
+.headerlist a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: #333;
+  transition: width 0.2s ease;
+}
+.headerlist a:hover::after {
+  width: 100%;
+}
+
+/* ===== ハンバーガーはPCでは非表示 ===== */
+.hamburger{
+  display: none;
+}
+
+
+/* ========================
+   TOP セクション（メインビジュアル）
+======================== */
+
+#top {
+  border-radius: 24px;
+  margin-top: 28px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+/* メインビジュアル ＋ ロゴ */
+.toptitle {
+  position: relative;          /* 子の絶対配置の基準にする */
+  padding: 0 40px 24px;
+}
+
+/* =========================
+   トップ画像コンテナふわっと
+========================= */
+
+.toptitle {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease-out, transform 2s ease-out;
+}
+
+.toptitle.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.top-main {
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+  margin-left: 100px;   /* ← ここを調整。例：80px右にずらす */
+}
+
+/* ロゴ画像をメインビジュアルの上に重ねる */
+.top-logo {
+  position: absolute;
+  top: 40px;                   /* 画像の中での縦位置 */
+  left: 60px;                  /* 画像の中での横位置 */
+  margin: 0;
+}
+
+.top-logo img {
+  height: 110px;  /* トップロゴサイズ変更 */
+  margin-top: 20px;
+}
+
+/* ロゴ専用のふわっとアニメーション */
+.top-logo {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease-out, transform 0.9s ease-out;
+}
+
+.top-logo.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.top-logo img {
+  transition: opacity 2s ease-out;
+}
+
+/* TOP サブコピー */
+.toptext {
+  text-align: left;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  line-height: 1.5em;
+  margin-top: 12px;
+  margin-left: 140px;
+}
+
+/* スクロールインジケータ */
+.scroll-indicator {
+  position: absolute;
+  left: 40px;
+  top: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/* =========================
+   scroll-text アニメーション
+========================= */
+
+@keyframes scrollTextMove {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.scroll-text {
+  writing-mode: vertical-rl;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #222222;
+  margin-right: 24px;
+  margin-bottom: -100px;
+
+  /* 追加：上下アニメーション */
+  animation: scrollTextMove 1.8s ease-in-out infinite;
+}
+
+
+
+.scroll-line {
+  width: 1px;
+  height: 120px;
+  background: #222222;
+}
+
+.scroll-arrow {
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid #222222;
+  transform: rotate(45deg);
+  margin-top: -24px;
+}
+
+
+
+/* 固定ボタン（画面下に追従） */
+.top_button {
+  position: fixed;
+  bottom: 30px;         /* 画面下からの余白 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;         /* 最前面に表示 */
+  margin: 0;            /* 上余白無効 */
+  width: 100%;          /* スマホ対策 */
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* 親要素は無効化 → 子要素だけクリック可能に */
+}
+
+.contact-button {
+  pointer-events: auto; /* ボタンだけクリック可能に */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 200px;
+  border-radius: 999px;
+  background: #ff7f5a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  box-shadow: 0 6px 16px rgba(255,127,90,0.4);
+}
+
+.contact-button:hover {
+  opacity: 0.9;
+}
+
+.arrow-icon {
+margin-top: 10px;
+}
+
+/* フッター侵入時にフェードアウト */
+.top_button.hidden {
+  opacity: 0;
+  pointer-events: none;  /* 押せなくする */
+  transition: opacity 0.4s ease;
+}
+
+/* 通常時（フェードイン） */
+.top_button {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+/* 初期状態：非表示 */
+.top_button {
+  opacity: 0;
+  transition: opacity 0.6s ease; /* フェードインの滑らかさ */
+}
+
+/* 表示状態（JSで付与するクラス） */
+.top_button.active {
+  opacity: 1;
+}
+
+/* すでにある hidden（フッターで隠す）はそのまま利用OK */
+.top_button.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* ========================
+   コンセプト
+======================== */
+#concept {
+  margin-top: 90px;
+  padding: 60px 0;      /* ← 横の余白はコンテンツ側で調整 */
+  background: transparent !important; /* ← 白背景を完全に消す */
+  border-radius: 0 !important;        /* ← 角丸を消す */
+  box-shadow: none !important;        /* ← 影を消す */
+  position: relative;
+  overflow: visible;    /* ← support文字がはみ出せるように */
+}
+
+/* 左：画像／右：テキストの2カラム */
+.concept_container {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;   /* 左を少し広く */
+  column-gap: 56px;
+  align-items: center;
+  position: relative;
+}
+
+/* 左の写真 */
+.concept_image img {
+  width: 100%;
+  border-radius: 32px;
+  display: block;
+}
+
+/* 右側テキストブロック */
+.conceptbox_03 {
+  position: relative;
+  z-index: 10; /* SUPPORT の上に表示 */
+  padding-bottom: 60px;
+}
+
+/* 「ゆるウェルとは？」ラベル */
+.concept_title h2 {
+  display: inline-block;
+  padding: 3px 40px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+  background: #fff;
+}
+
+/* 黄色の大きめ見出し */
+.concepttext {
+  font-size: 1.60rem;
+  font-weight: 700;
+  line-height: 1.8;
+  color: #99a4449b;   /* マスタード系イエロー */
+  margin: 0 0 18px;
+  letter-spacing: 0.07em;
+}
+
+/* 本文 */
+.concepttext02 {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  line-height: 2.1;
+  margin-top: 20px; 
+}
+
+/* SUPPORT背景文字 */
+.contentback_text {
+  position: absolute;
+  top: 0px;        /* 好きな位置に調整 */
+  left: 795px;      /* 右に寄せる（ここを好きに変更） */
+  font-size: 6.5rem;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: rgba(255,255,255,0.3);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;       /* 背景扱いなのでテキストより下にする場合は 0 に変更可能 */
+}
+
+/* 既存の js-fadein を使う前提（なければこれも入れてOK） */
+.js-fadein{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.js-fadein.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 追加：左から */
+.fade-left{
+  transform: translateX(-28px);
+}
+.fade-left.is-visible{
+  transform: translateX(0);
+}
+
+/* 追加：下から強め（テキスト向け） */
+.fade-up{
+  transform: translateY(34px);
+}
+.fade-up.is-visible{
+  transform: translateY(0);
+}
+
+/* 追加：縦文字は“ふわっと浮く”感じ */
+.fade-vertical{
+  transform: translateY(18px);
+}
+.fade-vertical.is-visible{
+  transform: translateY(0);
+}
+
+
+.concept_image img{
+  opacity: 0;                 /* ← 最初は透明 */
+  transform: scale(1.30);
+  transition:
+    transform 2.5s ease,
+    opacity 1.2s ease;        /* ← フェードも同時 */
+}
+
+/* 表示されたら */
+.concept_image.is-visible img{
+  opacity: 1;                 /* ← だんだん表示 */
+  transform: scale(1);
+}
+
+/* ========================
+   GOODS（カード群）
+======================== */
+
+#goods {
+  width: 100%;
+  background-color: #fff;  /* ここで画面横いっぱいを白に */
+  padding: 60px 0 70px;    /* 上下だけ余白。左右は0 */
+}
+
+
+/* 見出し */
+.goodsbox_01 {
+  text-align: center;
+  margin-bottom: 32px;
+  margin-top: 60px;
+  
+}
+
+.goodstitle{
+  display: inline-block;
+}
+
+.goodstitle h3 {
+  display: inline-block;
+  padding: 3px 60px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 20px;
+  background: #fff;
+  
+}
+
+.goodsbox_01_text {
+  margin-top: -10px;
+  margin-bottom: 50px;
+  color: #72823c9b; 
+  font-size: 1.60rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+
+
+/* ========================
+   GOODS スライダー
+======================== */
+
+/* スライダー全体を中央に */
+.goodsbox_02 {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* 3枚＋矢印をまとめる枠 */
+.goods-view {
+  position: relative;
+  width: 100%;
+  max-width:1050px;
+}
+
+/* 画像3枚を横並び */
+.goods-track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+/* 各画像の枠 */
+.goods-item {
+  flex: 0 0 30%;               /* 3枚並ぶようにざっくり30%ずつ */
+  display: flex;
+  justify-content: center;
+}
+
+.goods-item img {
+  width: 110%;
+  max-width: 420px;
+  border-radius: 24px;
+  padding: 18px;
+  object-fit: contain;
+}
+
+/* 3枚の見た目に強弱をつける */
+.goods-item{
+  transition: transform .25s ease, opacity .25s ease, filter .25s ease;
+}
+
+/* 左右：サブ */
+#goods-left,
+#goods-right{
+  opacity: .35;
+  filter: saturate(.85);
+  transform: scale(.88);
+  z-index: 1;
+}
+
+/* 中央：主役（影なし・手前に） */
+#goods-center{
+  opacity: 1;
+  filter: none;
+  transform: scale(1.1) translateY(-12px);
+}
+
+/* 中央：主役（影なし・手前に） */
+#goods-center{
+  opacity: 1;
+  filter: none;
+  transform: scale(1.06) translateY(-12px);
+}
+
+
+/* 画像の「間」に浮かせる矢印ボタン共通 */
+.mid-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255);
+  cursor: pointer;
+  padding: 0;
+}
+
+/* 擬似要素をボタンのど真ん中に固定 */
+.mid-arrow::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-80%, -50%); /* ← これが核心 */
+  border-style: solid;
+}
+
+/* ←矢印（左側） */
+.mid-prev::before{
+  border-width: 18px 22px 18px 0;
+  border-color: transparent #ff7f5a transparent transparent;
+}
+
+/* →矢印（右側） */
+.mid-next::before{
+  border-width: 18px 0 18px 22px;
+  border-color: transparent transparent transparent #ff7f5a;
+}
+
+/* 左右の位置（必要なら微調整） */
+.mid-prev{ left: 32%; }
+.mid-next{ left: 68%; }
+
+.mid-arrow:hover{
+  background: hsla(0, 0%, 78%, 0.6);
+}
+
+/* ========================
+   SHAREWELL セクション
+======================== */
+
+/* SHAREWELL セクション（疑似要素の基準） */
+#sharewell{
+  position: relative;
+  overflow: visible;   /* ← 左にはみ出して見せたいなら visible が必須 */
+  margin-top: 100px;
+  margin-bottom: -30px;
+}
+
+/* 左端の SHAREWELL 縦文字 */
+#sharewell::before{
+  content: "SHAREWELL";
+  position: absolute;
+  left: -40px;
+  top: -30px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: 700;
+  font-size: 7rem;
+  color: rgba(255,255,255,0.4);
+  z-index: 0;            /* 背景として後ろ */
+  pointer-events: none;
+}
+
+/* スマホ用タイトルのため非表示 */
+.sp-only-title{
+  display: none;
+}
+
+
+/* 中身 */
+.sharewell_container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.sharewellbox_01 h4  {
+  display: inline-block;
+  padding: 3px 60px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 20px;
+  background: #fff;
+}
+
+
+
+.sharewellbox_01_text {
+  font-size: 1.50rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #a2a2319b;   /* マスタード系イエロー */
+  margin: 0 0 18px;
+  letter-spacing: 0.2em;
+  margin-top: 10px;
+}
+
+
+/* 画像＋ポイント（PC） */
+.sharewellbox_02{
+  position: relative;
+  display: flex;
+  justify-content: center;  /* ← 横方向中央 */
+  padding-bottom: 100px;
+}
+
+/* 画像 */
+.sharewellbox_02 picture,
+.sharewellbox_02 img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sharewellbox_02 img{
+  max-width: 860px;
+  border-radius: 18px;
+  background: #fff;
+  padding: 16px;
+  margin-top: 10px;
+  margin-bottom: 80px;
+}
+
+/* ラベル位置（右下に重ねる） */
+.sharewellbox_02_point{
+  position: absolute;
+  right: -20px;
+  bottom: 140px;   /* ← top:450px より崩れにくい */
+}
+
+
+/* ラベルの見た目（画像どおりの白枠） */
+.sharewellbox_02_point_text .point_text {
+  display: inline-block;
+  padding: 8px 30px;
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+/* Sharewell画像：最初は少しだけ拡大＆透明 */
+.sharewell_img{
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 1.0s ease, transform 1.2s ease;
+}
+
+/* 親が可視化されたら画像も出す */
+.sharewellbox_02.is-visible .sharewell_img{
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sharewellbox_02_point{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+  transition-delay: .2s; /* 少し遅らせる */
+}
+
+.sharewellbox_02.is-visible .sharewellbox_02_point{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================
+   フッター
+======================== */
+
+#footer{
+  position: relative;
+  width: 100%;
+  background: #c8b451;
+  color: #fff;
+  padding: 20px 60px 50px;
+  box-sizing: border-box;
+}
+
+/* 1段目：左ロゴ ＋ 右ナビ */
+.footer_container01 {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer_container01{
+  align-items: flex-start; /* center → flex-start に変更 */
+}
+
+.footer_container01 img{
+  height: 60px;
+  margin-top: 50px;        /* ロゴだけ下げる */
+}
+
+/* ナビ */
+.footer_nav {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+}
+
+.footer_nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer_nav a:hover {
+  opacity: 0.8;
+}
+
+
+.footer_text01 {
+  font-weight: 600;
+}
+
+/* 右側の YURUWELL ロゴ */
+.footer_logo {
+  position: absolute;
+  right: 170px;          /* 右端からの距離 */
+  top: 60px;            /* 上からの距離（ナビの少し下） */
+}
+
+.footer_logo img {
+  height: 100px;
+  display: block;
+}
+
+/* スクロールふわっと表示用 */
+.js-fadein {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.js-fadein.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 少しずつ時間差で出したい時用（お好みで） */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+
+
+/* ========================
+   スマホ用（428px以下）
+======================== */
+@media (max-width: 428px) {
+
+  html, body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip; /* hiddenより安全 */
+  }
+
+  /* ありがちな固定幅ラッパーを全幅化（該当するものだけ効く） */
+  .wrapper, .container, main, .inner, .content, .section-inner{
+    width: 100%;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+
+  /* セクションは全幅（角丸・影はスマホでは外す） */
+  #top,#concept,#goods,#sharewell,#footer{
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* ========================
+     ヘッダー
+  ======================== */
+  header{
+    position: relative;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* ロゴは中央寄せ */
+    gap: 10px;
+  }
+
+  .header_img img{
+    padding-left: 0;
+    height: 30px;
+  }
+
+  /* ========================
+     ハンバーガー（右上固定）
+  ======================== */
+  .hamburger{
+    position: fixed;
+    top: 14px;
+    right: 20px;
+    z-index: 2000; /* top_button(999)より上 */
+
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #b7a13a;
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: none;
+  }
+
+  .hamburger span{
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #fff;
+    border-radius: 999px;
+    margin: 0;
+  }
+
+  /* ========================
+     SPメニュー（全幅・上から出る）
+     <nav id="headernav" class="sp-nav">
+  ======================== */
+  #headernav.sp-nav{
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 1900;
+
+    background: rgba(255,255,255,.92);
+    border: 1px solid rgba(0,0,0,.05);
+    padding: 16px;
+
+    /* 全幅なら下だけ角丸が自然（好みで20pxでもOK） */
+    border-radius: 0 0 20px 20px;
+
+    /* 初期：閉 */
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  body.menu-open #headernav.sp-nav{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #headernav.sp-nav ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #headernav.sp-nav a{
+    display: block;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: hsla(44, 77%, 68%, 0.5);
+    font-weight: 700;
+  }
+
+  /* スマホは日本語だけ見せる（重なり防止） */
+  .nav-en{ display: none; }
+  .nav-jp{ display: inline; opacity: 1; }
+
+  /* ========================
+     TOP（ロゴ→画像）
+  ======================== */
+  #top{ background: none; }
+
+  .toptitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .top-logo{
+    position: static !important;
+    order: 1;
+    margin: 0px 0 0px !important;
+    text-align: center;
+    transform: none !important;
+  }
+
+  .top-logo img{
+    height: 70px;
+    margin: 0 !important;
+    display: inline-block;
+  }
+
+  .top-main{
+    order: 2;
+    width: 100vw;
+    height: 70vh;
+    max-height: 560px;
+    object-fit: cover;
+    margin: 0;
+    transform: none;
+    border-radius: 0;
+    display: block;
+  }
+
+  /* スクロール矢印は非表示（1回だけ） */
+  .scroll-indicator{ display: none; }
+
+  .toptext{
+    margin: 30px 0 0;
+    padding: 0 30px;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+
+  .toptext br{
+    display: none;
+  }
+
+  .top_button{ padding: 0 16px; }
+
+  .contact-button{
+    width: 80%;
+    justify-content: center;
+    padding: 14px 14px;
+    font-size: 1.3rem;
+  }
+
+  /* ========================
+     CONCEPT
+  ======================== */
+  #concept{
+    padding: 10px 20px;
+    margin-top: -30px;
+    margin-bottom: -20px;
+  }
+
+  .concept_container{
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .contentback_text{
+    left: 67%;
+    transform: translateX(-50%);
+    top: 380px;
+    font-size: 4.8rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-align: center;
+  }
+
+  .concept_title h2 {
+    display: inline-block;
+    padding: 4px 60px;
+    border-radius: 5px;
+    border: 1.5px solid #333;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 20px;
+    background: #fff;
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+
+  .concepttext{
+    top: 0px;
+    font-size: 1.5rem;
+    writing-mode: horizontal-tb;
+    text-align: center;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+  }
+
+  .concepttext02{
+    padding: 0px 30px;
+    font-weight: 600;
+    font-size: 1.04rem;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .concepttext02 br{
+    display: none;
+  }
+
+  
+
+  /* ========================
+     GOODS（横スクロール化）
+  ======================== */
+  #goods{ padding: 5px 0px 48px; }
+
+  .goods-view{ max-width: 100%; }
+
+  .goodstitle h3{
+  display: inline-block;
+  padding: 0px 20px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1.3;
+  border: none;      /* ← 線を消す */
+  color: #a2a2319b;
+  margin-top: -20px;
+  }
+
+  .goodsbox_01_text{
+    color: #000;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding: 0px 40px;
+    margin-bottom: -10px;
+  }
+
+  .goods-track{
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    justify-content: flex-start;
+  }
+
+  .goods-item{
+    flex: 0 0 75%;
+    scroll-snap-align: center;
+  }
+
+  .goods-item img{
+    max-width: 100%;
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .mid-arrow{ display: none; }
+
+  /* 横スクロール：スナップ強化 */
+  .goods-track{
+    display: flex;
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;       /* これが核 */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;   /* iOSの慣性スクロール */
+
+    gap: 16px;
+
+    /* 左右に“余白”を作ると、centerスナップが綺麗に効く */
+    padding: 0 16px 12px;
+
+    /* スクロールバー非表示（好み） */
+    scrollbar-width: none;      /* Firefox */
+  }
+  .goods-track::-webkit-scrollbar{ display:none; }
+
+  /* 1枚ずつスナップを強制 */
+  .goods-item{
+    flex: 0 0 calc(100% - 32px); /* ほぼ1枚分（左右padding分を引く） */
+    scroll-snap-align: center;   /* 中央でピタッ */
+    scroll-snap-stop: always;    /* 勢いで飛びにくくする（対応ブラウザで効く） */
+  }
+
+  /* 画像の見た目 */
+  .goods-item img{
+    width: 100%;
+    max-width: 100%;
+    border-radius: 18px;
+    padding: 12px;
+  }
+
+
+  
+
+  /* ========================
+     SHAREWELL
+  ======================== */
+/* SHAREWELL 本体（黄色背景） */
+#sharewell{
+  position: relative;
+  background: linear-gradient(to bottom, #fbf1b8 0%, #f3d676 100%);
+  overflow: hidden;
+  padding: 120px 16px 56px;
+  margin-bottom: -90px;
+
+  /* 1pxだけ上に食い込ませて継ぎ目を消す（超重要） */
+  margin-top: -2px;
+  border-top: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+/* 上部ウェーブ（波） */
+#sharewell::before{
+  content: "";
+  position: absolute;
+
+  /* ここがポイント：上に 2px かぶせる */
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 84px; /* 80pxより少し大きくして隙間を消す */
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: top center;
+  pointer-events: none;
+  z-index: 1;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M0,64 C120,100 240,0 360,32 C480,200 600,80 720,80 C840,80 960,32 1080,32 C1200,32 1320,80 1440,64 L1440,0 L0,0 Z'/%3E%3C/svg%3E");
+}
+
+/* 中身を波より前に */
+.sharewell_container{
+  position: relative;
+  z-index: 2;
+}
+/* 上部ウェーブ（これが波の本体） */
+#sharewell::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  z-index: 1;
+  pointer-events: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' d='M0,64 C120,80 240,32 360,32 C480,32 600,80 720,80 C840,80 960,32 1080,32 C1200,32 1320,80 1440,64 L1440,0 L0,0 Z'/%3E%3C/svg%3E");
+}
+
+/* 中身を波より前に出す */
+.sharewell_container{
+  position: relative;
+  z-index: 2;
+}
+
+
+  .sp-only-title{
+    display: block;
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .sp-only-title span{
+    display: block;
+    font-size: 3rem;
+    font-weight: 100;
+    letter-spacing: 0.01em;
+    margin-top: 6px;
+  }
+
+  .sharewellbox_01 {
+text-align: center;
+  }
+  .sharewellbox_01 h4  {
+    display: inline-block;
+    padding: 3px 60px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    margin: 0 0 20px;
+    background: #fff;
+  }
+  
+  
+  
+  .sharewellbox_01_text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #000;
+    margin: 0 0 18px;
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+  text-align: center;
+  padding-bottom: 10px;
+  }
+  
+
+  .sharewellbox_02{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    position: relative;
+  }
+
+  .sharewellbox_02 img{
+    max-width: 85%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .sharewellbox_02_point{
+    text-align: right;
+    right: -5px;
+  bottom: 65px; 
+  }
+
+ /* ========================
+   FOOTER（スマホ）
+======================== */
+#footer{ 
+  padding: 0px 16px 20px; 
+}
+
+.footer_container01{
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* ← 中央寄せ */
+  gap: 10px;
+}
+
+.footer_nav{
+  display: none;
+}
+
+.footer_container01 img {
+  height: 40px;
+  margin-top: 15px;
+}
+
+.footer_logo{
+  position: static;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center; /* ← 念のため */
+
+}
+
+.footer_logo img{ 
+  height: 70px;
+  display: block;
+}
+}
