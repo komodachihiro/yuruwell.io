@@ -730,7 +730,7 @@ margin-top: 10px;
 /* Sharewell画像：最初は少しだけ拡大＆透明 */
 .sharewell_img{
   opacity: 0;
-  transform: scale(1.1);
+  transform: scale(1.03);
   transition: opacity 1.0s ease, transform 1.2s ease;
 }
 
@@ -1052,7 +1052,7 @@ margin-top: 10px;
     text-align: center;
   }
   .contentback_text{
-    left: 67%;
+    left: 60%;
     transform: translateX(-50%);
     top: 380px;
     font-size: 4.8rem;
